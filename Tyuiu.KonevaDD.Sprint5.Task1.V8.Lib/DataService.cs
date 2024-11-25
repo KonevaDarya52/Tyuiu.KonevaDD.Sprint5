@@ -35,9 +35,13 @@ namespace Tyuiu.KonevaDD.Sprint5.Task1.V8.Lib
                 {
                     strY = y.ToString("F0", culture); 
                 }
+                else if (y * 10 % 1 == 0) 
+                {
+                    strY = y.ToString("F1", culture); 
+                }
                 else
                 {
-                    strY = y.ToString("F2", culture);
+                    strY = y.ToString("F2", culture); 
                 }
 
                 if (i != stopValue)
