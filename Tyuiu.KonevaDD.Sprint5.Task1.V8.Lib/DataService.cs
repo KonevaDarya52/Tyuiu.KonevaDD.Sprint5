@@ -14,7 +14,7 @@ namespace Tyuiu.KonevaDD.Sprint5.Task1.V8.Lib
                 File.Delete(path);
             }
 
-            CultureInfo culture = new CultureInfo("ru-RU"); 
+            CultureInfo culture = new CultureInfo("ru-RU");
 
             for (int i = startValue; i <= stopValue; i++)
             {
@@ -30,7 +30,15 @@ namespace Tyuiu.KonevaDD.Sprint5.Task1.V8.Lib
                     y = 0;
                 }
 
-                string strY = y.ToString("F2", culture);
+                string strY;
+                if (y % 1 == 0) 
+                {
+                    strY = y.ToString("F0", culture); 
+                }
+                else
+                {
+                    strY = y.ToString("F2", culture);
+                }
 
                 if (i != stopValue)
                 {
@@ -44,5 +52,24 @@ namespace Tyuiu.KonevaDD.Sprint5.Task1.V8.Lib
 
             return path;
         }
+
+
+
     }
+
+
 }
+   
+    
+
+
+    
+    
+
+
+
+
+    
+     
+    
+        
