@@ -1,5 +1,6 @@
 ﻿using tyuiu.cources.programming.interfaces.Sprint5;
 using System.IO;
+using System.Globalization;
 namespace Tyuiu.KonevaDD.Sprint5.Task1.V8.Lib
 {
     public class DataService : ISprint5Task1V8
@@ -12,6 +13,8 @@ namespace Tyuiu.KonevaDD.Sprint5.Task1.V8.Lib
             {
                 File.Delete(path);
             }
+
+            CultureInfo culture = new CultureInfo("ru-RU"); 
 
             for (int i = startValue; i <= stopValue; i++)
             {
@@ -27,7 +30,7 @@ namespace Tyuiu.KonevaDD.Sprint5.Task1.V8.Lib
                     y = 0;
                 }
 
-                string strY = y.ToString("F2").Replace(",", ".");
+                string strY = y.ToString("F2", culture);
 
                 if (i != stopValue)
                 {
