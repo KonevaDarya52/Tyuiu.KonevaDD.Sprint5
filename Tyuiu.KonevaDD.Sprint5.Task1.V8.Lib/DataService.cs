@@ -12,10 +12,11 @@ namespace Tyuiu.KonevaDD.Sprint5.Task1.V8.Lib
             {
                 File.Delete(path);
             }
-            double y;
-            string strY;
+
             for (int i = startValue; i <= stopValue; i++)
             {
+                double y;
+
                 if (2 * i - 2 != 0)
                 {
                     y = 4 - 2 * i + (2 + Math.Cos(i)) / (2 * i - 2);
@@ -25,7 +26,9 @@ namespace Tyuiu.KonevaDD.Sprint5.Task1.V8.Lib
                 {
                     y = 0;
                 }
-                strY = y.ToString("F2");
+
+                string strY = y.ToString("F2").Replace(",", ".");
+
                 if (i != stopValue)
                 {
                     File.AppendAllText(path, strY + Environment.NewLine);
@@ -35,6 +38,7 @@ namespace Tyuiu.KonevaDD.Sprint5.Task1.V8.Lib
                     File.AppendAllText(path, strY);
                 }
             }
+
             return path;
         }
     }
