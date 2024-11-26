@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿
+using System.IO;
 using Tyuiu.KonevaDD.Sprint5.Task5.V15.Lib;
 
 namespace Tyuiu.KonevaDD.Sprint5.Task5.V15
@@ -24,7 +25,6 @@ namespace Tyuiu.KonevaDD.Sprint5.Task5.V15
             Console.WriteLine("* Результат округлить до трёх знаков после запятой.                       *");
             Console.WriteLine("***************************************************************************");
             Console.WriteLine("* Введите путь к файлу:                                                   *");
-
             string path = Console.ReadLine();
 
             Console.WriteLine("***************************************************************************");
@@ -36,9 +36,17 @@ namespace Tyuiu.KonevaDD.Sprint5.Task5.V15
                 double result = ds.LoadFromDataFile(path);
                 Console.WriteLine($"Минимальное значение, делящееся на 5: {result}");
             }
+            catch (FileNotFoundException)
+            {
+                Console.WriteLine("Файл не найден. Убедитесь, что указали правильный путь.");
+            }
+            catch (InvalidOperationException ex)
+            {
+                Console.WriteLine($"Ошибка: {ex.Message}");
+            }
             catch (Exception ex)
             {
-                Console.WriteLine($"минимальное вещественное число в файле: {ex.Message}");
+                Console.WriteLine($"Произошла ошибка: {ex.Message}");
             }
 
             Console.WriteLine("***************************************************************************");

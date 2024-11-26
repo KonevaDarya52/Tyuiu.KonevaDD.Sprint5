@@ -3,7 +3,7 @@ using tyuiu.cources.programming.interfaces.Sprint5;
 using System.IO;
 namespace Tyuiu.KonevaDD.Sprint5.Task5.V15.Lib
 {
-    public class DataService : ISprint5Task5V15
+    public class DataService
     {
         public double LoadFromDataFile(string path)
         {
@@ -16,15 +16,16 @@ namespace Tyuiu.KonevaDD.Sprint5.Task5.V15.Lib
             {
                 return line.Split(new[] { ' ', '\t', ',' }, StringSplitOptions.RemoveEmptyEntries)
                            .Select(str => double.TryParse(str, out var number) ? number : double.NaN)
-                           .Where(num => !double.IsNaN(num));
+                           .Where(num => !double.IsNaN(num)); 
             });
 
-            var divisibleByFive = numbers.Where(num => num > 0 && num % 5 == 0);
+            var divisibleByFive = numbers.Where(num => num % 5 == 0);
 
             if (!divisibleByFive.Any())
-                throw new InvalidOperationException("-10.0).");
+                throw new InvalidOperationException("В файле нет чисел, которые делятся на 5.");
 
             var minNumber = divisibleByFive.Min();
+
 
             return Math.Round(minNumber, 3);
         }
