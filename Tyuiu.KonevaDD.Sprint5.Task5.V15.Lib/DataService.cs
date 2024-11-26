@@ -1,32 +1,57 @@
 ﻿using tyuiu.cources.programming.interfaces.Sprint5;
+using System.Globalization;
 using System.IO;
+using System.Linq;
+
 namespace Tyuiu.KonevaDD.Sprint5.Task5.V15.Lib
 {
     public class DataService : ISprint5Task5V15
     {
         public double LoadFromDataFile(string path)
         {
-            if (!File.Exists(path))
-                throw new FileNotFoundException($"Файл по пути {path} не найден.");
+            var numbers = new System.Collections.Generic.List<double>();
 
-            var lines = File.ReadAllLines(path);
-
-            var numbers = lines.SelectMany(line =>
+            try
             {
-                return line.Split(new[] { ' ', '\t', ',' }, StringSplitOptions.RemoveEmptyEntries)
-                           .Select(str => double.TryParse(str, out var number) ? number : double.NaN)
-                           .Where(num => !double.IsNaN(num)); 
-            }).ToList();
+                using (StreamReader reader = new StreamReader(path))
+                {
+                    string line;
+                    while ((line = reader.ReadLine()) != null)
+                    {
+                        string[] parts = line.Split(new[] { ' ', '\t', ',' }, StringSplitOptions.RemoveEmptyEntries);
 
-            var divisibleByFive = numbers.Where(num => num % 5 == 0);
+                        foreach (var part in parts)
+                        {
+                            if (double.TryParse(part, NumberStyles.Float, CultureInfo.InvariantCulture, out double number))
+                            {
+                                if (Math.Abs(number % 5) < 1e-6 && number > 0)
+                                {
+                                    numbers.Add(number);
+                                }
+                            }
+                        }
+                    }
+                }
 
-            if (!divisibleByFive.Any())
-                throw new InvalidOperationException("В файле нет чисел, которые делятся на 5.");
-
-
-            var minNumber = divisibleByFive.Min();
-
-            return Math.Round(minNumber, 3);
+                if (numbers.Count > 0)
+                {
+                    return Math.Round(numbers.Min(), 3); 
+                }
+                else
+                {
+                    throw new InvalidOperationException("В файле нет положительных чисел, которые делятся на 5.");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Произошла ошибка: {ex.Message}");
+            }
         }
+
+
     }
+
+
+
+
 }
