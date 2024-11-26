@@ -38,7 +38,7 @@ namespace Tyuiu.KonevaDD.Sprint5.Task5.V15
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Произошла ошибка: {ex.Message}");
+                Console.WriteLine($"минимальное вещественное число в файле: {ex.Message}");
             }
 
             Console.WriteLine("***************************************************************************");

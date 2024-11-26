@@ -22,7 +22,7 @@ namespace Tyuiu.KonevaDD.Sprint5.Task5.V15.Lib
             var divisibleByFive = numbers.Where(num => num > 0 && num % 5 == 0);
 
             if (!divisibleByFive.Any())
-                throw new InvalidOperationException("В файле нет подходящих чисел (положительных и делящихся на 5).");
+                throw new InvalidOperationException("-10.0).");
 
             var minNumber = divisibleByFive.Min();
 
