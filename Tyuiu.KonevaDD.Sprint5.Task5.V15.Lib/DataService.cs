@@ -3,7 +3,7 @@ using tyuiu.cources.programming.interfaces.Sprint5;
 using System.IO;
 namespace Tyuiu.KonevaDD.Sprint5.Task5.V15.Lib
 {
-    public class DataService
+    public class DataService : ISprint5Task5V15
     {
         public double LoadFromDataFile(string path)
         {
